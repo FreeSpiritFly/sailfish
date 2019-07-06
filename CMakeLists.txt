@@ -10,12 +10,15 @@ include_directories(./include)
 set(KV_SRC src/kvdbs/db_leveldb.cpp
 			src/kvdbs/db_rocksdb.cpp)
 
+set(DOC_SRC src/docdbs/db_mongo.cpp)
+
 set(DIR_SRC ${KV_SRC}
+			${DOC_SRC}
 			src/main.cpp)
 
 
-set(link_lib rocksdb leveldb)
+set(link_lib rocksdb leveldb bsoncxx mongocxx)
 
-add_executable(sailfish ${KV_SRC} )
+add_executable(sailfish ${DIR_SRC} )
 
 target_link_libraries(sailfish ${link_lib})
